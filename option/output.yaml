@@ -1,0 +1,9 @@
+base:
+  database: "Data/Twitter/base/Database"
+  image: "Data/Twitter/base/image"
+holo:
+  database: "Data/Twitter/holo/Database"
+  image: "Data/Twitter/holo/image"
+user:
+  database: "Data/Twitter/user/Database"
+  image: "Data/Twitter/user/image"

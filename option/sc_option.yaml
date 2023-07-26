@@ -1,0 +1,9 @@
+base:
+  date: 21
+  limit: 30000
+holo:
+  date: 14
+  limit: 10000
+user:
+  date: 365
+  limit: 20000
