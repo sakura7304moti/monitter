@@ -93,7 +93,7 @@ def get_tweet(query:str,limit:int,date:int,driver):
                         icon_heart_element = i.find('span', class_='icon-heart')
                         if icon_heart_element is not None:
                             try:
-                                like_count = int(i.get_text(strip=True))#いいね
+                                like_count = int(i.get_text(strip=True).replace(' ', '').replace(',', ''))#いいね
                             except:
                                 pass
                     data = [

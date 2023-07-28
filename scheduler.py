@@ -11,6 +11,8 @@ try:
     date, limit = option.base_option()
     hashtags = tag.base_hashtags()
     for p in hashtags:
+        print(f'hashtag -> {p}')
+        utils.message(f'hashtag : {p}')
         model.base_scraper(p, date, limit)
     """
     HOLO
