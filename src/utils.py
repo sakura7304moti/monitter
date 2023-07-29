@@ -67,6 +67,7 @@ def get_tweet(query:str,limit:int,date:int,driver):
 
     # 現在の日時を取得
     now = datetime.datetime.now()
+    date_time = datetime.datetime.now()
     tweets = []
     while(True):
         try:
