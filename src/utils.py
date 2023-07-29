@@ -5,6 +5,7 @@ import re
 from time import sleep
 import random
 from urllib import request
+import requests
 import chromedriver_autoinstaller
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
@@ -36,7 +37,7 @@ def message(text: str):
         line_notify_api = "https://notify-api.line.me/api/notify"
         headers = {"Authorization": f"Bearer {line_notify_token}"}
         data = {"message": f"{message}"}
-        request.post(line_notify_api, headers=headers, data=data)
+        requests.post(line_notify_api, headers=headers, data=data)
     except:
         pass
 

@@ -8,17 +8,21 @@ try:
     """
     BASE
     """
+    utils.message('base mode start')
     date, limit = option.base_option()
     hashtags = tag.base_hashtags()
     for p in hashtags:
         print(f'hashtag -> {p}')
         utils.message(f'hashtag : {p}')
         model.base_scraper(p, date, limit)
+    utils.message('base mode end')
     """
     HOLO
     """
+    utils.message('holo mode start')
     date, limit = option.holo_option()
     model.holo_scraper(date, limit)
+    utils.message('holo mode end')
     """
     USER
     """
