@@ -129,6 +129,8 @@ def get_tweet(query:str,limit:int,date:int,driver):
             pass
             
     # breakしたら、データフレームにして保存する
+    print(f'saved image : {len(tweets)}')
+    message(f'saved image : {len(tweets)}')
     tweet_df = pd.DataFrame(
         tweets, columns=["url", "images", "date", "userId", "userName", "likeCount"]
     )
