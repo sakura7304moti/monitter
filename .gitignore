@@ -1,5 +1,5 @@
 sns.db
 src/.ipynb_checkpoints/
-src/
 test.ipynb
 .ipynb_checkpoints/
+src/__pycache__/
