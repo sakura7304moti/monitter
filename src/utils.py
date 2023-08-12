@@ -63,6 +63,14 @@ def get_url(query:str)-> str:
     url = f'https://nitter.net/search?f=tweets&q={parsed}&f-media=on&f-images=on&e-replies=on&e-nativeretweets=on'
     return url
 
+def get_image_url(url:str) -> str:
+    base = url.split('%2F')[-1]
+    ext = base.split('.')[-1]
+    file_name=base.replace(f'.{ext}','')
+    twitter_url = f'https://pbs.twimg.com/media/{file_name}?format={ext}&name=orig'
+    return twitter_url
+
+
 def get_tweet(query:str,limit:int,date:int,driver):
     driver.get(get_url(query))
 
@@ -81,7 +89,8 @@ def get_tweet(query:str,limit:int,date:int,driver):
             for item in timeline_items:
                 if len(item.find_all('a')) > 1:
                     url = 'https://nitter.net' + item.find('a',class_='tweet-link')['href']#ツイート元URL
-                    images = ['https://nitter.net' + a['href'] for a in item.find_all('a',class_='still-image')]#画像URL
+                    base_images = ['https://nitter.net' + a['href'] for a in item.find_all('a',class_='still-image')]#nitterの画像URL
+                    images = [get_image_url(image) for image in base_images]
                     # フォーマットを指定してdatetimeに変換
                     date_str = item.find('span',class_='tweet-date').find('a')['title']
                     date_format = "%b %d, %Y · %I:%M %p %Z"
