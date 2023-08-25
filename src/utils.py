@@ -75,7 +75,11 @@ def get_image_url(url:str) -> str:
 
 
 def get_tweet(query:str,limit:int,date:int,driver):
+    print(f'url -> {get_url(query)}')
     driver.get(get_url(query))
+    # Get Screen Shot
+    driver.save_screenshot('test.png')
+    print('saved sc')
 
     # 現在の日時を取得
     now = datetime.datetime.now()
