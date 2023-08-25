@@ -11,6 +11,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.chrome.service import Service
 import datetime
 import pandas as pd
 import platform
@@ -53,8 +54,10 @@ def get_driver(headless=True):
     
     try:
         driver_path = chromedriver_autoinstaller.install()
-        driver = webdriver.Chrome(options=options, executable_path=driver_path)
-    except:
+        service = Service(executable_path=driver_path)
+        driver = webdriver.Chrome(options=options,service=service)
+    except Exception as e:
+        print('err -> ',e)
         driver = webdriver.Chrome(options=options)
     return driver
 
