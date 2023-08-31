@@ -44,11 +44,18 @@ def message(text: str):
 
 def get_driver(headless=True):
     options = ChromeOptions()
+    #UAをいくつか格納しておく
+    user_agent = ['Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
+                  'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
+                  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36',
+                  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36'
+                  ]
     if headless is True:
         print("Scraping on headless mode.")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")  # An error will occur without this line
-        options.add_argument('--user-agent=' + 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36')#user-agent
+        #ここにuser_agentからランダムで読み込み
+        options.add_argument('--user-agent=' + user_agent[random.randrange(0, len(user_agent), 1)])
         options.headless = True
     else:
         options.headless = False
