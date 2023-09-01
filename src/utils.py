@@ -6,7 +6,11 @@ from time import sleep
 import random
 from urllib import request
 import requests
+<<<<<<< HEAD
 import chromedriver_autoinstaller
+=======
+#import chromedriver_autoinstaller
+>>>>>>> origin/master
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
@@ -50,8 +54,12 @@ def get_driver(headless=True):
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")  # An error will occur without this line
         options.add_argument('--headless')
+<<<<<<< HEAD
         user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36'
         options.add_argument(f'user-agent={user_agent}')
+=======
+        options.add_argument(f'user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36') #追加
+>>>>>>> origin/master
         options.headless = True
     else:
         options.headless = False
