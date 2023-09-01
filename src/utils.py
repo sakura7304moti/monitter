@@ -7,6 +7,7 @@ import random
 from urllib import request
 import requests
 import chromedriver_autoinstaller
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
@@ -44,25 +45,22 @@ def message(text: str):
 
 def get_driver(headless=True):
     options = ChromeOptions()
-    #UAをいくつか格納しておく
-    user_agent = ['Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
-                  'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36',
-                  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36',
-                  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36'
-                  ]
     if headless is True:
         print("Scraping on headless mode.")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")  # An error will occur without this line
-        #ここにuser_agentからランダムで読み込み
-        options.add_argument('--user-agent=' + user_agent[random.randrange(0, len(user_agent), 1)])
+        options.add_argument('--headless')
+        user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36'
+        options.add_argument(f'user-agent={user_agent}')
         options.headless = True
     else:
         options.headless = False
-    
+        user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36'
+        options.add_argument(f'user-agent={user_agent}')
     try:
         driver_path = chromedriver_autoinstaller.install()
         service = Service(executable_path=driver_path)
+        # サービスを起動
         driver = webdriver.Chrome(options=options,service=service)
     except Exception as e:
         print('err -> ',e)
