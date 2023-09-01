@@ -58,9 +58,8 @@ def get_driver(headless=True):
         #driver_path = chromedriver_autoinstaller.install()
         #service = Service(executable_path=driver_path)
         # サービスを起動
-        options.BinaryLocation = ("/usr/bin/chromium-browser") # バイナリ実行可能ファイルの場所指定 (chromium)
-        service = Service("/usr/bin/chromedriver") # インストールしたドライバーのパスを指定
-        driver = webdriver.Chrome(options=options,service=service)
+        
+        driver = webdriver.Chrome(options=options,executable_path='/usr/bin/chromedriver')
     except Exception as e:
         print('err -> ',e)
         driver = webdriver.Chrome(options=options)
