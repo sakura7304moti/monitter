@@ -1,8 +1,8 @@
 base:
-  date: 21
+  date: 10
   limit: 30000
 holo:
-  date: 14
+  date: 10
   limit: 10000
 user:
   date: 365

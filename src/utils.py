@@ -142,6 +142,9 @@ def get_tweet(query:str,limit:int,date:int,driver):
             #------------------------------
             #Load moreをクリック
             try:
+                # 1から3の間のランダムな浮動小数点数を取得
+                random_value = random.uniform(1, 3)
+                sleep(random_value)
                 driver.find_element(By.LINK_TEXT,"Load more").click()
             except:
                 break
